@@ -1,9 +1,11 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '/build')))
 
 const port = 8000;
 
@@ -66,6 +68,9 @@ app.post('/api/articles/:name/add-comment', (req, res) => {
     }, res);
 });
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/build/index.html'));
+})
 
 app.listen(port, () => {
     console.log(`app started at port ${port}`)
