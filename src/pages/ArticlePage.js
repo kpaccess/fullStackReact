@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import articleContent from "./article-content";
 import ArticlesList from "../components/ArticlesList";
 import PageNotFound from "./PageNotFound";
+import CommentsList from "../components/CommentsList";
 
 const ArticlePage = ({ match }) => {
     const { name } = match.params;
@@ -34,6 +35,7 @@ const ArticlePage = ({ match }) => {
                     <p key={key}>{paragraph}</p>
                 )
             }
+            <CommentsList comments={articleInfo.comments}/>
             <h3>Other Articles:</h3>
             <ArticlesList articles={otherArticles}/>
         </div>
